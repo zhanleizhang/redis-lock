@@ -130,6 +130,27 @@ public class RedisUtil {
     }
 
     /**
+     * setnx 不存在key才进行赋值并返回1，否则0
+     * @param key
+     * @param value
+     * @param time
+     * @return
+     */
+    public boolean setnx(String key, Object value, long time) {
+        try {
+            if (time > 0) {
+                redisTemplate.opsForValue().setIfAbsent(key, value, time, TimeUnit.SECONDS);
+            } else {
+                set(key, value);
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
      * 递增
      *
      * @param key   键

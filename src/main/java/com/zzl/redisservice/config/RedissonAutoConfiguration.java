@@ -49,7 +49,7 @@ public class RedissonAutoConfiguration {
      * @return
      */
     @Bean
-    @ConditionalOnProperty(name="redisson.address")
+    //@ConditionalOnProperty(name="redisson.address")
     RedissonClient redissonSingle() {
         Config config = new Config();
         SingleServerConfig serverConfig = config.useSingleServer()
